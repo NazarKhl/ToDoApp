@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>TodoList</title>
+</head>
+<style>
+    body{
+        transition: 0.4s;
+    }
+    .all-notebook{
+        display: flex;
+        justify-content: center;
+    }
+    .first-main-notebook{
+    width: 731px;
+    height: 730px;
+    border-radius: 90px 0px 0px 90px;
+    background: #918B8B;
+    }
+    .second-main-notebook{
+    width: 631px;
+    height: 730px;
+    flex-shrink: 0;
+    border-radius: 00px 90px 90px 0px;
+    background: #918B8B;
+    }
+    .point-1{
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    fill: #D9D9D9;
+    margin-left: 50%;
+    }
+    .js-right-side{
+    width: 631px;
+    height: 730px;
+    margin-left: 30px;
+    border-radius: 90px 0px 0px 90px;
+    background: #FCF2F2;
+    border-left: 1px solid #D9D9D9;
+    border-top: 0px solid #D9D9D9;
+    box-shadow: -5px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: absolute;
+    }
+    .js-right-side-more{
+    width: 531px;
+    height: 730px;
+    margin-left: 30px;
+    border-radius: 90px 0px 0px 90px;
+    background: #FCF2F2;
+    border-left: 1px solid #D9D9D9;
+    box-shadow: -5px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: absolute;
+    }
+    .js-right-side-more-more{
+    width: 431px;
+    height: 730px;
+    margin-left: 30px;
+    border-radius: 90px 0px 0px 90px;
+    background: #FCF2F2;
+    border-left: 1px solid #D9D9D9;
+    box-shadow: -5px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: absolute;
+    }
+    .js-pen-decor{
+    width: 34px;
+    height: 539px;
+    transform: rotate(-25.514deg);
+    border-radius: 90px;    
+    background: #D9D9D9;
+    display: flex;
+    position: absolute;
+    left: 270px;
+    top: 200px;
+    }
+    .js-pen-medium{
+    width: 22px;
+    height: 172px;
+    border-radius: 90px;
+    background: #D9D9D9;
+    right: 20px;
+    top: 40px;
+    transform: rotate(1deg);
+    display: flex;
+    position: absolute;
+    }
+    .js-pen-top{
+    width: 22px;
+    height: 62px;
+    transform: rotate(-1deg);
+    border-radius: 90px;
+    background: #D9D9D9;
+    position: absolute;
+    display: flex;
+    bottom: 170px;
+    left: 12px;
+    border: 0px;
+    color: #D9D9D9;
+    transition: 0.4s;
+    cursor: pointer
+    }
+    .new-arrow{
+    width: 20px;
+    height: 730px;
+    background-color: #918B8B;
+    margin-left: 98%;
+    box-shadow: -5px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 90px 0px 0px 90px;
+    }
+    .newClassPenTop{
+    width: 22px;
+    height: 62px;
+    transform: rotateX(50deg);
+    transition: 0.4s;
+    }
+    .js-pen-text{
+    font-size: 30px;
+    font-family: Garamond, serif;
+    line-height: 50px;
+    position: absolute;
+    top: 0px;
+    left: 90px;
+    }
+    .todo-text{
+    color: #FCF2F2;
+    font-size: 40px;
+    letter-spacing: 4px;
+    }
+    .todo-input{
+    width: 573px;
+    height: 78px;
+    border-radius: 90px;
+    background: #FCF2F2;
+    box-shadow: 10px 0px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    border: 0px;
+    font-family: Arimo Hebrew Subset;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.37);
+    }
+    ::placeholder{
+    color: rgba(0, 0, 0, 0.37);
+    font-family: Arimo Hebrew Subset;
+    font-size: 40px;
+    letter-spacing: 4px;
+    text-align: start;
+    padding-left: 20px;
+    }
+    input:focus {
+    outline: none;
+    border-color: initial; 
+    }
+    .circle-1{
+    position: absolute;
+    right: 141px;
+    top: 135.5px;
+    width: 78px;
+    height: 78px;
+    border-radius: 90px;
+    opacity: 0.3;
+    background: #8E8787;
+    }
+    .circle-2{
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 90px;
+    opacity: 0.3;
+    background: #FCF2F2;
+    margin-top: 9px;
+    margin-left: 9px;
+    border: 0px;
+    box-shadow: 5px 0px 0px 0px black;
+    cursor: pointer;
+    }
+    .fa-plus{
+        font-size: 40px;
+        border-radius: 0px;
+        cursor: pointer;
+    }
+    .newClassEx{
+        transform: rotate(360deg);
+        transition: 0.5s;
+    }
+    .js-show-button{
+        text-align: center;
+        margin-top: 30px;
+    }
+    .show-button{
+    width: 335px;   
+    height: 78px;
+    border-radius: 90px;
+    background: #FCF2F2;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25) inset;
+    border: 0px;
+    margin-top: 50px;
+    transition: 0.5s;
+    }
+    .button-show-text{
+    color: rgba(0, 0, 0, 0.37);
+    font-family: Arimo Hebrew Subset;
+    font-size: 40px;    
+    letter-spacing: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+    }
+    .show-button:hover{
+        box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.399) inset;
+        transition: 0.5s;
+    }
+    .asd{
+        text-align: center;
+        margin-top: 30px;
+        font-size: 50px;
+        color: #FCF2F2;
+    }
+    .js-new-list div{
+    font-size: 30px;
+    width: 550px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    }
+    .js-new-list {
+        margin-top: 20px;
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .js-new-list li {
+        font-size: 30px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 60px;
+    }
+    .js-new-list .remove-task {
+        cursor: pointer;
+    }
+    .js-new-list .completed-task {
+        color: rgba(0, 0, 0, 0.37);
+        cursor: pointer;
+    }
+    .task-toggle {
+    margin-right: 10px; 
+    }
+
+    .task-text {
+    flex: 1; 
+    }
+    span, li{
+        color:#8E8787 ;
+    }
+</style>
+<body>
+    <div class="all-notebook">
+    <div class="first-main-notebook">
+    <div class="js-right-side">
+        <div class="new-arrow"></div>
+    <div class="js-right-side-more">
+    <div class="js-right-side-more-more"><p class="js-pen-text">A little reminder:<br>To change background color,<br> click on the pen cap.</p><div class="js-pen-decor"><div class="js-pen-medium"><button class="js-pen-top" onclick="changeThemeClick()">a</button></div></div></div>
+</div>
+    </div>
+    </div>
+    <div class="second-main-notebook">
+        <p class="todo-text">Todo App</p>
+        <input class="todo-input" type="text" placeholder="Add you new todo">
+        <div class="circle-1"><button class="circle-2" onclick="addNewTodo()"><i class="fa fa-plus" aria-hidden="true"></i></button></div>
+        <div clas   s="js-show-button">
+            <button class="show-button" onclick="displayCards()"><p class="button-show-text">Show my list</p></button> 
+        </div>
+        <div class="asd"></div>
+        <div class="js-new-list"></div>
+    </div>
+    </div>
+    <script>
+            let newTodoList = JSON.parse(localStorage.getItem('dataInfo')) || [];
+            const whiteElement = document.querySelector('.js-change-white');
+            const blackElement = document.querySelector('.js-change-black');
+            const allElementsVisible = document.querySelector('.js-all-button');
+            const penTop = document.querySelector('.js-pen-top');
+            const addTodo = document.querySelector('.circle-2');
+            function changeThemeClick(){
+                if(penTop.innerText === 'a'){
+                    penTop.innerHTML = 'n';
+                    document.body.style.backgroundColor = 'black';
+                    penTop.classList.add('newClassPenTop');
+                }else if(penTop.innerText === 'n'){
+                    penTop.innerHTML = 'a';
+                    document.body.style.backgroundColor = 'white';
+                    penTop.classList.remove('newClassPenTop');
+                }
+            }
+            function addNewTodo(){
+                let todoInput = document.querySelector('.todo-input').value;
+                let newAdd = document.querySelector('.js-end-input');
+                const newAddElement = document.querySelector('.asd');
+                todoInput.value = '';
+                setTimeout(function(){
+                addTodo.classList.add('newClassEx');
+                newAddElement.innerHTML = 'Added✔';
+                },100)
+                addTodo.classList.remove('newClassEx');
+                setTimeout(function(){
+                newAddElement.innerHTML = '';
+                },2000);
+                newTodoList.push(todoInput);
+                localStorage.setItem('dataInfo', JSON.stringify(newTodoList));
+            }
+            function displayCards() {
+                const listContainer = document.querySelector('.js-new-list');
+            listContainer.innerHTML = '';
+            for (let i = 0; i < newTodoList.length; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = newTodoList[i];
+                const removeButton = document.createElement('span');
+                removeButton.textContent = 'Delete';
+                removeButton.classList.add('remove-task');
+                removeButton.addEventListener('click', () => removeTask(i));
+                const toggleButton = document.createElement('span');
+                toggleButton.classList.add('completed-task');
+                toggleButton.addEventListener('click', () => toggleTask(i));
+                listItem.appendChild(toggleButton);
+                const taskText = document.createElement('span');
+                taskText.classList.add('task-text');
+                listItem.appendChild(taskText);
+                listItem.appendChild(removeButton);
+                listContainer.appendChild(listItem);
+            }
+        }
+             function removeTask(index) {
+                newTodoList.splice(index, 1);
+                displayCards();
+                localStorage.setItem('dataInfo', JSON.stringify(newTodoList)); 
+        }
+    </script>
+</body>
+</html>
